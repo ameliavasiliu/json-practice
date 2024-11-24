@@ -1,0 +1,16 @@
+#!/usr/bin/env python3
+
+import json
+import csv
+
+with open('schacon.repos.json') as file:
+    data = json.load(file)
+
+with open('chacon.csv', 'w', newline='') as csvfile:
+    csvwriter = csv.writer(csvfile)
+    csvwriter.writerow(['name', 'html_url', 'updated_at', 'visibility'])
+    for repo in data[:5]: 
+        csvwriter.writerow([repo['name'], repo['html_url'], repo['updated_at'], repo['visibility']])
+
+print("Data written to chacon.csv")
+
